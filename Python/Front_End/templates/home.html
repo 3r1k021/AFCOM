@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html> 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya">
+<head>
+<title>AFCOM Login</title>
+<script type="text/javascript">
+var im=["{{url_for('static', filename='photos/afBG.gif')}}","{{url_for('static', filename='photos/af1.jpg')}}","{{url_for('static', filename='photos/af2.jpg')}}","{{url_for('static', filename='photos/af3.jpg')}}"];
+var x=0;
+function changeIm(){
+  x = (x===im.length-1) ? 0 : x+1 ;
+  document.getElementById("im").src = im[x];
+}
+
+function beginAnim(){
+x=0;
+setInterval(changeIm,5000);
+}
+</script>
+</head>
+<body style= "color: #000000" onload="beginAnim()"> 
+
+
+<span><a href="http://afcomnycnj.com/" target="_blank"><img src="{{url_for('static', filename='photos/af.png')}}" width="100px" style="vertical-align: middle"></a><h1 style="color: #D1D0CE ; font-size: 25px ; display: inline-block ; font-family: Lato">&nbsp;&nbsp; Advancing Data Center Professionals</h1></span>
+<h1 style="color: #2B547E ; font-size: 30px ; font-family: Alegreya"><strong>A F C O M</strong></h1>
+<img src="{{url_for('static', filename='photos/afBG.gif')}}" width="850px" height="350px" id="im" style="display: block; margin-left: auto; margin-right: auto">
+<h4 style="color: #000000" align="center">Please Login to Database</h4>
+
+<form action='/echo' method='POST' align="center">
+	<input name='pass'>
+	<input type='submit' value='Login'>
+</form>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Developed by  <a href="http://erikossner.host22.com" target="_blank">Erik Ossner</a>, 2018. AFCOM is a trademark. All rights reserved to <a href="https://www.afcom.com" target="_blank">AFCOM</a>.</p>
+</body>
+
+</html>
+
+
+
+

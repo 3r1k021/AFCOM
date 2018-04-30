@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya">
+<head>
+<title>Home</title>
+<style>
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #2B547E;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #24476a;
+}
+
+.emp {
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    padding: 20px;
+}
+.btn-group button {
+    background-color: #2B547E; 
+    border: 1px solid blue; 
+    color: white;
+    padding: 10px 24px;
+    cursor: pointer; 
+    float: left; 
+}
+
+.btn-group button:not(:last-child) {
+    border-right: none; 
+}
+
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.btn-group button:hover {
+    background-color: #24476a;
+}
+
+.backhome button:hover {
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+<!--Afcom header-->
+<form action="/backMain">
+<span><div class="backhome"><button type="submit" style="background-color: white; padding: 0; border: none; background: none"><img src="{{url_for('static', filename='photos/af.png')}}" width="100px" style="vertical-align: middle"><h1 style="color: #D1D0CE ; font-size: 25px ; display: inline-block ; font-family: Lato">&nbsp;&nbsp; Advancing Data Center Professionals</h1></button></div></span>
+</form><h1 style="color: #2B547E ; font-size: 30px ; font-family: Alegreya"><strong>A F C O M</strong></h1>
+<div class="btn-group" style="width: 100%">
+<p>&nbsp;</p>
+<form action='/view' method='POST'><button type="submit" style="width: 20%; height: 50px">View Database</button></form>
+<form action='/update' method='POST'><button type="submit" style="width: 20% ; height: 50px">Update</button></form>
+<form action='/edit' method='POST'><button type="submit" style="width: 20% ; height: 50px ">Edit</button></form>
+<form action='/search' method='POST'><button type="submit" style="width: 20% ; height: 50px">Search</button></form>
+<form action='/delete' method='POST'><button type="submit" style="width: 20% ; height: 50px">Delete Database</button></form>
+</div>
+<!--Header end-->
+<script>
+function output(){
+if (Number('{{mess}}')==1){
+alert('{{message}}');
+}
+}
+window.onload=output;
+</script>
+<p>&nbsp;</p>
+<h1 style="text-align: center">AFCOM Employee Database</h1>
+
+<p style="padding-left: 40px ; padding-right: 40px ; font-size: 26px ; line-height: 1.65">Welcome to the AFCOM Employee Database. This database was developed by <a href="erikossner.host22.com">Erik Ossner</a> as part of the 2018 AFCOM Technologist Scholarship. The functions of this database are accessible through the various tabs at the tob of the page: View (view database), Update (add,remove employees), Edit (edit existing employees), Search (search employees), or Delete (delete all data). Click the AFCOM Logo at the top of any page to return to this main screen. If any errors are found, please contact  <a href="mailto:erikossner1@yahoo.com">erikossner1@yahoo.com</a>. Thank you!</p>
+<p>&nbsp;</p>
+<h3>Change Administrator Password:</h3>
+<form action="/updatePASS" method="POST">
+	<label>Old Password</label>
+    <input type="text" name="oldP">
+	<label>New Password</label>
+    <input type="text" name="newP">
+	    <input type="submit" value="Update">
+
+</form>
+</body>
+</html>

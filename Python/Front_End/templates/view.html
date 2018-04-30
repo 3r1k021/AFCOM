@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya">
+<head>
+<title>View Database</title>
+
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #f7f7f7;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #2B547E;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #24476a;
+}
+
+.emp {
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    padding: 20px;
+}
+.btn-group button {
+    background-color: #2B547E; /* Green background */
+    border: 1px solid blue; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+}
+
+.btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #24476a;
+}
+
+.backhome button:hover {
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+<!--Afcom header-->
+<form action="/backMain">
+<span><div class="backhome"><button type="submit" style="background-color: white; padding: 0; border: none; background: none"><img src="{{url_for('static', filename='photos/af.png')}}" width="100px" style="vertical-align: middle"><h1 style="color: #D1D0CE ; font-size: 25px ; display: inline-block ; font-family: Lato">&nbsp;&nbsp; Advancing Data Center Professionals</h1></button></div></span>
+</form><h1 style="color: #2B547E ; font-size: 30px ; font-family: Alegreya"><strong>A F C O M</strong></h1>
+<div class="btn-group" style="width: 100%">
+<p>&nbsp;</p>
+<form action='/view' method='POST'><button type="submit" style="width: 20%; height: 50px">View Database</button></form>
+<form action='/update' method='POST'><button type="submit" style="width: 20% ; height: 50px">Update</button></form>
+<form action='/edit' method='POST'><button type="submit" style="width: 20% ; height: 50px ">Edit</button></form>
+<form action='/search' method='POST'><button type="submit" style="width: 20% ; height: 50px">Search</button></form>
+<form action='/delete' method='POST'><button type="submit" style="width: 20% ; height: 50px">Delete Database</button></form>
+</div>
+<!--Header end-->
+<p>&nbsp;</p>
+<h1>AFCOM Employee Database</h1>
+<p>&nbsp;</p>
+<h3>Personal Information</h3>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Last Name</th>
+    <th>First Name</th>
+	<th>Middle Initial</th>
+    <th>Date of Birth</th>
+    <th>Social Security</th>
+    <th>Hire Date</th>
+    <th>Gender</th>
+  </tr>
+ {% for info in data %}
+  <tr>
+    {% for i in info %}
+		<td>{{i}}</td>
+	{% endfor %}
+  </tr>
+ {% endfor %}
+ 
+</table>
+<p>&nbsp;</p>
+<h3>Contact Information</h3>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Last Name</th>
+    <th>First Name</th>
+	<th>Middle Initial</th>
+	<th>Email Address</th>
+    <th>Phone Number</th>
+    <th>Street</th>
+    <th>Zip Code</th>
+    <th>State</th>
+    <th>Country</th>
+  </tr>
+ {% for con in contact %}
+  <tr>
+    {% for c in con %}
+		<td>{{c}}</td>
+	{% endfor %}
+  </tr>
+ {% endfor %}
+ 
+</table>
+<p>&nbsp;</p>
+<h3>Salaries</h3>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Last Name</th>
+    <th>First Name</th>
+	<th>Middle Initial</th>
+	<th>Annual Salary</th>
+    <th>Hourly Rate</th>
+    <th>Weekly Rate</th>
+    <th>Quarterly Rate</th>
+    <th>From Date</th>
+    <th>To Date</th>
+    <th>Overtime Hours</th>
+  </tr>
+ {% for sal in salaries %}
+  <tr>
+    {% for s in sal %}
+		<td>{{s}}</td>
+	{% endfor %}
+  </tr>
+ {% endfor %}
+ 
+</table>
+<p>&nbsp;</p>
+<h3>Department</h3>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Last Name</th>
+    <th>First Name</th>
+	<th>Middle Initial</th>
+	<th>Department Number</th>
+    <th>Department Name</th>
+    <th>Employee Title</th>
+  </tr>
+ {% for dep in depart %}
+  <tr>
+    {% for d in dep %}
+		<td>{{d}}</td>
+	{% endfor %}
+  </tr>
+ {% endfor %}
+ 
+</table>
+
+</body>
+
+</html>

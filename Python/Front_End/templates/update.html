@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya">
+<head>
+<title>Update Database</title>
+<style>
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #2B547E;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #24476a;
+}
+
+.emp {
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    padding: 20px;
+}
+.btn-group button {
+    background-color: #2B547E; 
+    border: 1px solid blue;
+    color: white; 
+    padding: 10px 24px; 
+    cursor: pointer; 
+    float: left;
+}
+
+.btn-group button:not(:last-child) {
+    border-right: none; 
+}
+
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.btn-group button:hover {
+    background-color: #24476a;
+}
+
+.backhome button:hover {
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+<!--Afcom header-->
+<form action="/backMain">
+<span><div class="backhome"><button type="submit" style="background-color: white; padding: 0; border: none; background: none"><img src="{{url_for('static', filename='photos/af.png')}}" width="100px" style="vertical-align: middle"><h1 style="color: #D1D0CE ; font-size: 25px ; display: inline-block ; font-family: Lato">&nbsp;&nbsp; Advancing Data Center Professionals</h1></button></div></span>
+</form><h1 style="color: #2B547E ; font-size: 30px ; font-family: Alegreya"><strong>A F C O M</strong></h1>
+<div class="btn-group" style="width: 100%">
+<p>&nbsp;</p>
+<form action='/view' method='POST'><button type="submit" style="width: 20%; height: 50px">View Database</button></form>
+<form action='/update' method='POST'><button type="submit" style="width: 20% ; height: 50px">Update</button></form>
+<form action='/edit' method='POST'><button type="submit" style="width: 20% ; height: 50px ">Edit</button></form>
+<form action='/search' method='POST'><button type="submit" style="width: 20% ; height: 50px">Search</button></form>
+<form action='/delete' method='POST'><button type="submit" style="width: 20% ; height: 50px">Delete Database</button></form>
+</div>
+<!--Header end-->
+<script>
+function output(){
+if (Number('{{mess}}')==1){
+alert('{{message}}');
+}
+document.getElementById("outputs").readOnly = true;
+document.getElementById("subEmpl").style.display = "none";
+	}
+
+function loadFileAsText(){
+document.getElementById("outputs").readOnly = false;
+document.getElementById("subEmpl").style.display = "block";
+
+  var fileToLoad = document.getElementById("empFile").files[0];
+
+  var fileReader = new FileReader();
+  fileReader.onload = function(fileLoadedEvent){
+      var textFromFileLoaded = fileLoadedEvent.target.result;
+      document.getElementById("outputs").value = textFromFileLoaded;
+	  fileReader.close();
+  };
+
+  fileReader.readAsText(fileToLoad, "UTF-8");
+}
+window.onload=output;
+</script>
+<h2>Add Employee</h2>
+
+<div class="emp">
+  <form action="/added" method="POST">
+    <label >First Name:</label>
+    <input type="text" name="nameF">
+	
+    <label>Last Name:</label>
+    <input type="text" name="nameL">
+	
+    <label>Middle Initial</label>
+	<input type="text" name="nameM">
+	
+    <label>Date of Birth</label>
+	<input type="text" name="dob">
+	
+	<label>Social Security</label>
+	<input type="text" name="ss">
+
+	<label>Hire Date</label>
+	<input type="text" name="hireD">
+	
+	<label>Gender</label>
+	<input type="text" name="gend">
+	
+	<label>Email Address</label>
+	<input type="text" name="email">
+	
+	<label>Phone Number</label>
+	<input type="text" name="phone">
+	
+	<label>Street</label>
+	<input type="text" name="street">
+	
+	<label>Zip Code</label>
+	<input type="text" name="zip">
+	
+	<label>State</label>
+	<input type="text" name="state">
+	
+	<label>Country</label>
+	<input type="text" name="country">
+	
+	<label>Annual Salary</label>
+	<input type="text" name="annS">
+	
+	<label>Hourly Rate</label>
+	<input type="text" name="hourS">
+	
+	<label>Weekly Rate</label>
+	<input type="text" name="weekS">
+	
+	<label>Quarterly Rate</label>
+	<input type="text" name="qSal">
+	
+	<label>From Date</label>
+	<input type="text" name="fromD">
+	
+	<label>To Date</label>
+	<input type="text" name="toD">
+	
+	<label>Overtime Hours</label>
+	<input type="text" name="overT">
+			
+	<label>Department Number</label>
+	<input type="text" name="deptN">
+	
+	<label>Department Name</label>
+	<input type="text" name="deptName">
+	
+	<label>Position Title</label>
+	<input type="text" name="title">
+
+
+    <input type="submit" value="Add">
+  </form>
+</div>
+<h2>Remove Employee</h2>
+<div class="emp">
+  <form action="/rem" method="POST">
+    <label >First Name:</label>
+    <input type="text" name="FI">
+	
+    <label>Last Name:</label>
+    <input type="text" name="LA">
+
+    <input type="submit" value="Remove">
+  </form>
+</div>
+<h2>Add Employee Through File</h2>
+ <h3 >Please select text file (with each line cooresponding to an employee field):</h3>
+
+<div class="emp">
+    <input type="file" id="empFile" accept=".txt">
+	<button onclick="loadFileAsText()">Load Selected Files</button>
+	<p>&nbsp;</p>
+
+  <form action="/fileSend" method="POST">
+  <label>Sample input (to be replaced with your file information):
+	<textarea id="outputs" style="width: 100% ; height: 300px" name="outputs">
+Last Name
+First Name
+Middle Initial
+Date of Birth
+Social Security
+Hire Date
+Gender
+Email Address	
+Phone Number	
+Street	
+Zip Code	
+State	
+Country	
+Annual Salary	
+Hourly Rate	
+Weekly Rate
+Quarterly Rate
+From Date	
+To Date	
+Overtime Hours		
+Department Number
+Department Name
+Position Title
+	</textarea>
+	<input type="submit" id="subEmpl" value="Add Employee">
+  </form>
+</div>
+</body>
+</html>

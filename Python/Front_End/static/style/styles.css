@@ -1,0 +1,68 @@
+h1{
+	line-height: 2.0;
+font-style: italic;
+ font-family: sans serif; 
+ font-size: 40px; 
+background-image: url("binary.jpg");
+background-size: 100% 100%;
+background-repeat: no-repeat;
+}
+#menu a{
+	color: white;
+	text-decoration: none;
+}
+
+#menu ul li{
+background-color: #85C1E9;
+width: 300px;
+border: 2px solid white;
+height: 50px;
+line-height: 50px;
+text-align:center;
+float: left;
+color: white;
+font-family: Arial;
+font-size: 22px;
+
+}
+
+#ud:hover{
+	background-color: #3498DB;
+		 background-size: 100% 100%;
+		background-repeat: no-repeat;
+}
+
+#sea:hover{
+	
+	background-color: #3498DB;
+		 background-size: 100% 100%;
+		background-repeat: no-repeat;
+}
+
+#del:hover{
+	background-color: #3498DB;
+		 background-size: 100% 100%;
+		background-repeat: no-repeat;
+}
+
+#hom:hover{
+	background-color: #3498DB;
+		 background-size: 100% 100%;
+		background-repeat: no-repeat;
+}
+
+#menu ul ul{
+	display: none;
+}
+
+#menu ul li:hover >ul{
+	display:block;
+	cursor: pointer;
+}
+
+html{
+background-image: url("cream_dust.png");
+background-repeat: no-repeat;
+background-size: cover;
+	
+}

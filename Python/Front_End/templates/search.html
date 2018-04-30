@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya">
+<head>
+<title>Search Database</title>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #f7f7f7;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #2B547E;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #24476a;
+}
+
+.emp {
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    padding: 20px;
+}
+.btn-group button {
+    background-color: #2B547E;
+    border: 1px solid blue;
+    color: white; 
+    padding: 10px 24px;
+    cursor: pointer; 
+    float: left; 
+}
+
+.btn-group button:not(:last-child) {
+    border-right: none;
+}
+
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.btn-group button:hover {
+    background-color: #24476a;
+}
+
+.backhome button:hover {
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+<!--Afcom header-->
+<form action="/backMain">
+<span><div class="backhome"><button type="submit" style="background-color: white; padding: 0; border: none; background: none"><img src="{{url_for('static', filename='photos/af.png')}}" width="100px" style="vertical-align: middle"><h1 style="color: #D1D0CE ; font-size: 25px ; display: inline-block ; font-family: Lato">&nbsp;&nbsp; Advancing Data Center Professionals</h1></button></div></span>
+</form><h1 style="color: #2B547E ; font-size: 30px ; font-family: Alegreya"><strong>A F C O M</strong></h1>
+<div class="btn-group" style="width: 100%">
+<p>&nbsp;</p>
+<form action='/view' method='POST'><button type="submit" style="width: 20%; height: 50px">View Database</button></form>
+<form action='/update' method='POST'><button type="submit" style="width: 20% ; height: 50px">Update</button></form>
+<form action='/edit' method='POST'><button type="submit" style="width: 20% ; height: 50px ">Edit</button></form>
+<form action='/search' method='POST'><button type="submit" style="width: 20% ; height: 50px">Search</button></form>
+<form action='/delete' method='POST'><button type="submit" style="width: 20% ; height: 50px">Delete Database</button></form>
+</div>
+<!--Header end-->
+<script>
+
+function Hide(){
+if (Number('{{mess}}')==1){
+alert('{{message}}');
+}
+if (Number('{{filling}}')==1){
+		document.getElementById("allTables").style.display="block";
+		document.getElementById("ci").innerText="Results in 'Contact Information' for '"+'{{termW}}'+"'";
+		document.getElementById("pi").innerText="Results in 'Personal Information' for '"+'{{termW}}'+"'";
+		document.getElementById("si").innerText="Results in 'Salary' for '"+'{{termW}}'+"'";
+		document.getElementById("dp").innerText="Results in 'Department' for '"+'{{termW}}'+"'";
+
+}else{
+	//Hide everything
+	document.getElementById("allTables").style.display="none";
+}
+}
+window.onload = Hide;
+</script>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Search Database for Any Keyword:</h2>
+<div class="emp">
+  <form action="/searchWord" method="POST">
+    <input type="text" name="word">
+
+    <input type="submit" value="Search">
+  </form>
+</div>
+<div id="allTables">
+<h3 id="pi">Results in 'Personal Information'</h3>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Last Name</th>
+    <th>First Name</th>
+	<th>Middle Initial</th>
+    <th>Date of Birth</th>
+    <th>Social Security</th>
+    <th>Hire Date</th>
+    <th>Gender</th>
+  </tr>
+{% if filling %}
+	{% for info in aInf %}
+		<tr>
+			{% for i in info %}
+				<td>{{i}}</td>
+			{% endfor %}
+		</tr>
+	{% endfor %}
+{% endif %}
+ 
+</table>
+<p>&nbsp;</p>
+<h3 id="ci">Results in 'Contact Information'</h3>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Last Name</th>
+    <th>First Name</th>
+	<th>Middle Initial</th>
+	<th>Email Address</th>
+    <th>Phone Number</th>
+    <th>Street</th>
+    <th>Zip Code</th>
+    <th>State</th>
+    <th>Country</th>
+  </tr>
+{% if filling %}
+	{% for con in aCon %}
+		<tr>
+			{% for c in con %}
+				<td>{{c}}</td>
+			{% endfor %}
+		</tr>
+	{% endfor %}
+{% endif %}
+ 
+</table>
+<p>&nbsp;</p>
+<h3 id="si">Results in 'Salaries'</h3>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Last Name</th>
+    <th>First Name</th>
+	<th>Middle Initial</th>
+	<th>Annual Salary</th>
+    <th>Hourly Rate</th>
+    <th>Weekly Rate</th>
+    <th>Quarterly Rate</th>
+    <th>From Date</th>
+    <th>To Date</th>
+    <th>Overtime Hours</th>
+  </tr>
+{% if filling %}
+	{% for sal in aSal %}
+		<tr>
+			{% for s in sal %}
+				<td>{{s}}</td>
+			{% endfor %}
+		</tr>
+	{% endfor %}
+{% endif %}
+ 
+</table>
+<p>&nbsp;</p>
+<h3 id="dp">Results in 'Department'</h3>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Last Name</th>
+    <th>First Name</th>
+	<th>Middle Initial</th>
+	<th>Department Number</th>
+    <th>Department Name</th>
+    <th>Employee Title</th>
+  </tr>
+{% if filling %}
+	{% for dep in aDep %}
+		<tr>
+			{% for d in dep %}
+				<td>{{d}}</td>
+			{% endfor %}
+		</tr>
+	{% endfor %}
+{% endif %}
+ 
+</table>
+</div>
+</body>
+
+</html>
